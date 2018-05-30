@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rahul.placessearch.Main_Tab">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:includeFontPadding="false"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/KeywordTextView"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Keyword"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="66dp" />
+
+        <TextView
+            android:id="@+id/error1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please enter mandatory field"
+            android:textColor="?attr/colorError"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/KeywordPlainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Keyword"
+            android:inputType="text"
+            android:padding="20dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="85dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Category"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="140dp" />
+
+        <Spinner
+            android:id="@+id/CategorySpin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/CategoryList"
+            android:padding="20dp" />
+
+        <TextView
+            android:id="@+id/DistanceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Distance (in miles)"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/DistanceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter distance (default 10 miles)"
+            android:inputType="number"
+            android:padding="20dp" />
+
+        <TextView
+            android:id="@+id/FromtextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="From"
+            android:textSize="16sp" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioLoc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RadioButton
+                android:id="@+id/radio_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:onClick="onRadioButtonClicked"
+                android:text="Current location" />
+
+            <RadioButton
+                android:id="@+id/radio_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="Other.  Specify Location" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/error2"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:text="Please enter mandatory field"
+            android:textColor="?attr/colorError"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:completionHint="Type in the location"
+            android:ems="10"
+            android:hint="Type in the Location"
+            android:inputType="text"
+            android:padding="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/Searchbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="20dp"
+                android:text="SEARCH"
+                tools:layout_editor_absoluteX="46dp"
+                tools:layout_editor_absoluteY="273dp" />
+
+            <Button
+                android:id="@+id/ClearBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="20dp"
+                android:text="CLEAR" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

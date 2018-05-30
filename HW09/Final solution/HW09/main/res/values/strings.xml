@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">Places Search</string>
+    <string name="json">Hello</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>\
+
+    <string name="default1">Default</string>
+    <string name="airport">Airport</string>
+    <string name="amusement_park">Amusement Park</string>
+    <string name="aquarium">Aquarium</string>
+    <string name="art_gallery">Art Gallery</string>
+    <string name="bakery">Bakery</string>
+    <string name="bar">Bar</string>
+    <string name="beauty_salon">Beauty Salon</string>
+    <string name="bowling_alley">Bowling Alley</string>
+    <string name="bus_station">Bus Station</string>
+    <string name="cafe">Cafe</string>
+    <string name="campground">Campground</string>
+    <string name="car_rental">Car Rental</string>
+    <string name="casino">Casino</string>
+    <string name="lodging">Loding</string>
+    <string name="movie_theater">Movie Theater</string>
+    <string name="museum">Museum</string>
+    <string name="park">Park</string>
+    <string name="parking">Parking</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="shopping_mall">Shopping Mall</string>
+    <string name="subway_station">Subway Station</string>
+    <string name="taxi_stand">Taxi Stand</string>
+    <string name="train_station">Train Staion</string>
+    <string name="travel_agency">Travel Agency</string>
+    <string name="zoo">Zoo</string>
+
+    <string-array name="CategoryList">
+        <item>@string/default1</item>
+        <item>@string/airport</item>
+        <item>@string/amusement_park</item>
+        <item>@string/aquarium</item>
+        <item>@string/art_gallery</item>
+        <item>@string/bakery</item>
+        <item>@string/bar</item>
+        <item>@string/beauty_salon</item>
+        <item>@string/cafe</item>
+        <item>@string/campground</item>
+        <item>@string/car_rental</item>
+        <item>@string/casino</item>
+        <item>@string/lodging</item>
+        <item>@string/movie_theater</item>
+        <item>@string/museum</item>
+        <item>@string/park</item>
+        <item>@string/parking</item>
+        <item>@string/restaurant</item>
+        <item>@string/shopping_mall</item>
+        <item>@string/subway_station</item>
+        <item>@string/taxi_stand</item>
+        <item>@string/train_station</item>
+        <item>@string/travel_agency</item>
+        <item>@string/zoo</item>
+    </string-array>
+
+    <string name="default2">Please select</string>
+    <string name="DRIVING">Driving</string>
+    <string name="BICYCLING">Bicycling</string>
+    <string name="TRANSIT">Transit</string>
+    <string name="WALKING">Walking</string>
+
+    <string-array name="MapSpin">
+        <item>@string/default2</item>
+        <item>@string/DRIVING</item>
+        <item>@string/BICYCLING</item>
+        <item>@string/TRANSIT</item>
+        <item>@string/WALKING</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="str_btn_draw">Draw Route</string>
+
+
+
+    <string name="google">Google reviews</string>
+    <string name="yelp">Yelp reviews</string>
+    <string name="default_order">Default order</string>
+    <string name="hirate">Highest Rating</string>
+    <string name="lorate">Lowest Rating</string>
+    <string name="more">Most Recent</string>
+    <string name="lere">Least Recent</string>
+
+    <string-array name="reviews">
+        <item>@string/google</item>
+        <item>@string/yelp</item>
+
+    </string-array>
+    <string-array name="order">
+        <item>@string/default_order</item>
+        <item>@string/hirate</item>
+        <item>@string/lorate</item>
+        <item>@string/more</item>
+        <item>@string/lere</item>
+    </string-array>
+</resources>
