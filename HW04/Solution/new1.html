@@ -1,0 +1,305 @@
+<html>
+	<head>
+
+		<title>Homework 4</title>
+
+
+<script>
+
+var stringConstructor = "test".constructor;
+var arrayConstructor = [].constructor;
+var objectConstructor = {}.constructor;
+
+function whatIsIt(object) {
+    if (object === null) {
+        return "null";
+    }
+    else if (object === undefined) {
+        return "undefined";
+    }
+    else if (object.constructor === stringConstructor) {
+        return "String";
+    }
+    else if (object.constructor === arrayConstructor) {
+        return "Array";
+    }
+    else if (object.constructor === objectConstructor) {
+        return "Object";
+    }
+    else {
+        return "don't know";
+    }
+}
+
+function stringify(obj_from_json){
+    if(typeof obj_from_json !== "object" || Array.isArray(obj_from_json)){
+        // not an object, stringify using native function
+        return JSON.stringify(obj_from_json);
+    }
+    // Implements recursive object serialization according to JSON spec
+    // but without quotes around the keys.
+    let props = Object
+        .keys(obj_from_json)
+        .map(key => `${key}:${stringify(obj_from_json[key])}`)
+        .join(",");
+    return `{${props}}`;
+}
+
+function viewJSON(what){
+var URL = what.URL.value;  
+  function loadJSON(url) {
+      if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+       xmlhttp=new XMLHttpRequest();
+   } else {// code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");  }
+  xmlhttp.open("GET",url,false); // "synchronous"
+  xmlhttp.send();
+  jsonObj= JSON.parse(xmlhttp.responseText);
+  return jsonObj;   }
+  jsonObj = loadJSON(URL);
+ if (window.ActiveXObject) //if IE, simply execute script (due to async prop).
+ {  if (jsonObj.parseError.errorCode != 0) {
+    var myErr = jsonObj.parseError;
+    generateError(jsonObj);
+    hWin = window.open("", "Error", "height=300,width=340");
+    hWin.document.write(html_text);
+  } else {  generateHTML(jsonObj);
+            hWin = window.open("", "Top Trucking Companies", "height=800,width=600");
+            hWin.document.write(html_text);   } 
+} else //else if FF, execute script once JSON object has loaded
+ {  jsonObj.onload=generateHTML(jsonObj);
+    hWin = window.open("", "Top Trucking Companies", "height=800,width=600");
+    hWin.document.write(html_text);  } hWin.document.close();  }
+
+	
+
+
+function generateHTML(jsonObj)   {
+          root=jsonObj.DocumentElement; 
+          html_text="<html><head><title>Top Trucking Companies</title></head><body>";
+		 // document.getElementById("myDIV").style.overflow = "scroll";							-- SCROLLABLE WINDOW
+          html_text+="<div id='myDIV'><table border='2'>"; 
+          header_first_row=jsonObj.Mainline.Table.Header.Data;  // an array of first rows
+          info_company=jsonObj.Mainline.Table.Row;
+		  //document.write(info_company[0]);
+		  // document.write(header_first_row);
+		   
+		   html_text+="<tbody>"; 
+           html_text+="<tr>"; 
+           x=0;  y=0;
+	 // output the headers
+	// var header_keys = Object.keys(NodeList);
+           for(i=0;i<header_first_row.length;i++)           { 
+		   
+		   
+		   
+ 		header=header_first_row[i];
+		/*
+		if(header=="Parent Company") {  header="Parent Company";  x=120;  y=55;  }				   
+		//if(header=="Boeing") {  header="Family";  x=100;  y=67;  }
+		if(header=="Subsidiary Portfolio / Services")    header="Subsidiary Portfolio / Services"; 
+		if(header=="HQ / Info")   header="HQ / Info"; 				 
+		if(header=="Annual Revenue ($ million)")  header="Annual Revenue ($ million)";			       
+		if(header=="HomePage")  header="HomePage";			       
+		if(header=="Logo")  header="Logo";			       
+		*/
+		html_text+="<th>"+header+"</th>";    			
+	}                   
+	
+	
+		html_text+="</tr>"; 
+		count=0;
+// output out the values
+           for(i=0;i<info_company.length;i++) //do for all planes (one per row)
+          {                 
+		NodeList=info_company[i]; //get properties of a plane (an object)
+		
+		 // document.write((jsonObj.Mainline.Table.Row[0].Hubs.Hub[0]));
+	                html_text+="<tr>";      //start a new row of the output table
+                          var row_values = Object.values(NodeList);
+						  var row_keys = Object.keys(NodeList);
+						  var row_entries = Object.entries(NodeList);
+						 // document.write(row_keys[2].length);
+						  
+						  for(k=0;k<row_values.length;k++)
+						
+						   {
+						       
+						
+							//document.write(row_values);
+                     	       
+						   if(row_keys[k]=="Image"  || row_keys[k]=="Logo" )		
+								   {//handle images separately				         			
+											x=120;  y=55;
+											html_text+="<td><img src='"+ row_values[k] +"' width='"+x+"' height='"+y+"'></td>"; 	      
+									
+									              
+									} 	
+
+							/*		
+							
+							else if(row_keys[k]=="Hubs"  || row_keys[k]=="Hub" )		
+								   {//handle hubs separately	
+										count+=1;
+										document.writeln(Object.keys(row_keys[k]));
+										document.writeln(count);
+										for(l=0;l<row_keys[k].length;l++)
+											for(m=0;m<row_keys[k][l].length;m++)
+													document.writeln(row_values[k][l][m]);
+												if(m==0)
+													 html_text+="<td><b>"+row_values[k][l][m]+"</b></td>";  	      
+												else
+													html_text+="<td>"+row_values[k][l][m]+"</td>";  
+									              
+									} 
+									
+							
+							else if (typeof(row_values[k]) === 'object' || typeof(row_values[k]) === 'Object')
+									document.writeln(Object.values(row_keys[k][0]));*/	
+						   
+						    else if(row_keys[k]=="HomePage"  || row_keys[k]=="HomePages" )		
+								   {//handle urls separately				         			
+											html_text+="<td><a href='"+row_values[k] +"'> "+ row_values[k] +"</a></td>"; 	      
+											//document.writeln(row_values[k]);
+									              
+									} 
+							
+							
+							/*
+							else if(row_keys[k]=="Hubs"  || row_keys[k]=="Hub" )		
+								   {//handle hubs separately	
+										count+=1;
+									//	document.writeln((row_keys[k].Hub));
+									//	var loadPath = JSON.parse(row_keys[k]);
+
+//											JSON.stringify(row_keys[k]);
+											
+										//	document.writeln(loadPath);
+										
+										//alert(whatIsIt(row_keys[k]));
+										
+										//if (typeof row_keys[k] == 'object')
+											//document.writeln((row_keys[k]));
+										
+										
+										info_company_hubs=jsonObj.Mainline.Table.Row[0];
+										
+										document.writeln(info_company_hubs.length);
+										
+										
+									}
+							*/	
+							
+							/*
+							
+							else if(row_keys[k]=="Hubs"  || row_keys[k]=="Hub" )		
+							{			var mn=(row_entries[k]);	
+									//	document.writeln(mn);
+										//mn=mn.Hub[0];
+										for (var name in mn)
+											//	for(var ab in (mn[name]))
+												//for (ab=0;ab<mn[name].length;ab++)
+													{document.writeln(JSON.stringify(mn[name], Object.getOwnPropertyNames(mn[name])));
+													document.write("\n*************************");
+													}
+													mnm=JSON.stringify(mn[name], Object.getOwnPropertyNames(mn[name]));
+													var mnm = JSON.parse(mnm);
+													var mnmm=Object.values(mnm);
+												//	document.writeln(mnm);
+									//document.writeln((JSON.stringify(mn, Object.getOwnPropertyNames(mn))));
+										//for (var name in row_entries[k])	
+											//		document.writeln(row_entries[k].name);		
+		//	for(b=0;b<row_values[k][name].length;i++)															
+												//for(var vals in row_keys[k][name]){
+													
+							}
+											
+										//for (var name in row_keys[k])	
+											//for(b=0;b<row_keys[k][name].length;i++)
+												//	document.writeln(row_keys[k][name].[b]);
+							
+							*/
+							
+							
+							else if(row_keys[k]=="Hubs"  || row_keys[k]=="Hub" )		
+							{		
+								
+																	  
+											count=0;
+											var mm=jsonObj.Mainline.Table.Row[i].Hubs;	
+												for (var name in mm)	
+												{
+													for (var name2 in mm[name])	
+													{
+															if(count ==0)
+															{
+																	//var myJSONString = (mm[name][name2]);
+																	//var myEscapedJSONString = myJSONString.replace(/[\"]/g, '');
+																	 html_text+="<td><ul><b><li>"+(mm[name][name2])+"</b></li>"; 
+																	//document.write((JSON.stringify(mm[name][name2], Object.getOwnPropertyNames(mm[name][name2]))));			
+																	//document.write("\n*************************");
+															}
+															else
+															{	//var myJSONString = JSON.stringify(JSON.stringify(mm[name][name2]));
+																//var myEscapedJSONString = myJSONString.replace(/[\"]/g, '');
+																html_text+="<li>"+(mm[name][name2])+"</li></ul></td>"; 
+															}
+															
+														count=1;
+													}													
+												
+												}
+							}
+							
+							
+						   
+						   else
+							 html_text+="<td>"+row_values[k]+"</td>"; 
+							
+													
+				  		    }       
+	html_text+="</tr>";            
+		}   
+
+html_text+="</tbody>"; 
+html_text+="</table>";           
+html_text+="</div></body></html>";  }
+
+
+ function chkform()
+            {
+
+
+            var empt = document.form1.text1.value;
+				if (empt === "")
+				{
+				alert("Please input a value.");
+				return false;
+				}
+				else 
+				{
+					return true; 
+				}
+        }
+</script>
+
+
+ </script>
+ 
+ </head>
+ 
+<body>
+<br /><br /><br /><br /><br /><br />
+<h1><center>Enter URL for Trucking List JSON File</center></h1>
+
+<form name="form1" method="POST" id="location" onsubmit="chkform()">
+<center><input type="text" name="text1" id="URL" maxlength="255" size="50" value="truckinglist.json" /></center>
+<br />
+<center><input type="submit" name="submit" value="Submit Query" onClick="viewJSON(this.form)" /></center>
+<div id="error1"> </div>
+</form>
+
+</body>
+</html>
+

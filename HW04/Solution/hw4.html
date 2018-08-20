@@ -1,0 +1,267 @@
+<html>
+	<head>
+
+			<title>Homework 4</title>
+
+<script>
+
+try
+	{
+
+		function chkform()																		//chkform() checks for no-value in the text-box
+		{					
+					var empty = document.form1.text1.value;
+						if (empty === "")
+						{
+							alert("Please input a value.");
+							return false;
+						}
+						else 
+						{
+							return true; 
+						}
+		}
+		 
+		function viewJSON(what)
+		{
+
+				var URL = what.URL.value;  
+				var file_exists=1;
+				
+				function loadJSON(url) 
+				{	
+					
+					try
+					{
+					  if (window.XMLHttpRequest)
+						{																		// Code for IE7+, Firefox, Chrome, Opera, Safari
+								xmlhttp=new XMLHttpRequest();
+						} 
+					  else 
+						{																		// Code for IE6, IE5
+								xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+						}
+				  
+						  xmlhttp.open("GET",url,false);										 // "synchronous"
+						  xmlhttp.send();
+						  if( xmlhttp.status === 404  || xmlhttp.status === 0 || xmlhttp.status !== 200)			// Detect if JSON file exists
+								throw(e);
+						 			
+					}
+					
+					catch(e)
+					{	
+						file_exists=0;
+						
+						if( xmlhttp.status === 404  || xmlhttp.status ===0 || xmlhttp.status !== 200)			// Detect if JSON file exists
+						{
+							alert("File does not exist.");  
+						}
+						else
+							alert(e);
+					}
+										
+					try
+					{
+						jsonObj= JSON.parse(xmlhttp.responseText);
+					}
+					
+					catch(e)
+					{	
+						if(file_exists==1 && URL!="")														// Detect if JSON file is invalid
+							alert("Invalid JSON file given.")
+					}
+					
+					return jsonObj;   
+											
+				}
+				
+				jsonObj = loadJSON(URL);
+				if (window.ActiveXObject) 														//if IE, simply execute script (due to async prop).
+				{ 
+					if (jsonObj.parseError.errorCode != 0) 
+					{
+						var myErr = jsonObj.parseError;
+						generateError(jsonObj);
+						hWin = window.open("", "Error", "toolbar=yes,scrollbars=yes,resizable=yes,height=300,width=340");						// -- SCROLLABLE WINDOW
+						hWin.document.write(html_text);
+					} 
+					else 
+					{
+						generateHTML(jsonObj);
+						if(check_for_rows!==0)
+						{
+								hWin = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,height=800,width=600");				// -- SCROLLABLE WINDOW
+								hWin.document.write(html_text);  
+						} 
+					}
+				} 
+				else																			 //else if FF, execute script once JSON object has loaded
+				{  
+					jsonObj.onload=generateHTML(jsonObj);
+					if(check_for_rows!==0)
+					{
+							hWin = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,height=800,width=600");					// -- SCROLLABLE WINDOW
+							hWin.document.write(html_text);  
+					} 
+				}
+				
+				hWin.document.close();  
+		}
+
+			
+		function generateHTML(jsonObj)   
+		{
+				  root=jsonObj.DocumentElement; 
+				  html_text="<html><head><title>Top Trucking Companies</title></head><body>";
+				 
+				  html_text+="<div id='myDIV'><table border='2'>"; 
+				  header_first_row=jsonObj.Mainline.Table.Header.Data;  						// An array of first rows
+				  check_for_rows=0;
+				  is_null=0;
+				  
+				  rows=Object.keys(jsonObj.Mainline.Table);
+				
+				  for ( z=0;z<rows.length;z++)													// Check whether there any rows are present
+					{		
+							if(rows[z]==='Header')
+									;
+							else if(rows[z]==='Row')
+							{		
+									info_company=jsonObj.Mainline.Table.Row;
+									check_for_rows=1;
+									if((info_company[0])==null)
+										is_null=1;
+									
+							}
+							else
+									alert("No trucking companies found.");
+					
+					}
+				
+					if (check_for_rows===0 || info_company.length===0 || is_null==1)							// Check whether there are any trucking companies							
+					{
+							alert("No trucking companies found.");
+							check_for_rows=0;
+					}
+					else if(check_for_rows!==0)
+					{	
+						
+								   html_text+="<tbody>"; 
+								   html_text+="<tr>"; 
+								   x=0;  y=0;
+																								// Output the headers
+								   for(i=0;i<header_first_row.length;i++)          
+								   { 
+										header=header_first_row[i];
+										html_text+="<th>"+header+"</th>";    			
+								   }                   
+								html_text+="</tr>"; 
+								count=0;
+								
+																								// Output out the values
+																								
+								   for(i=0;i<info_company.length;i++) 							//Do for all companies (one per row)
+									{                 
+											NodeList=info_company[i];							 //Get properties of companies (an object)
+											
+											html_text+="<tr>";      							//Start a new row of the output table
+											
+											var row_values = Object.values(NodeList);
+											var row_keys = Object.keys(NodeList);
+											var row_entries = Object.entries(NodeList);
+											
+											for(k=0;k<row_values.length;k++)
+											{
+													if(row_keys[k]=="NULL" || row_keys[k]==null || row_keys[k]=="" || row_keys[k]=="Null" || row_keys[k]=="null")		// Empty cells check for keys
+																	html_text+="<td>"+""+"</td>"; 
+												    
+													else if(row_values[k]=="NULL" || row_values[k]==null || row_values[k]=="" || row_values[k]=="Null" || row_values[k]=="null")		// Empty cells check for values
+																	html_text+="<td>"+""+"</td>"; 
+																	
+													else if(row_keys[k]=="Image"  || row_keys[k]=="Logo" )		
+														   {
+																									//Handling images separately				         			
+																	x=120;  y=65;
+																	html_text+="<td><img src='"+ row_values[k] +"' width='"+x+"' height='"+y+"'></td>"; 	      
+															} 	
+												   
+													else if(row_keys[k]=="HomePage"  || row_keys[k]=="HomePages" )		
+														   {												   
+																									//Handling URLs separately	
+																									
+																	html_text+="<td><a href='"+row_values[k] +"'> "+ row_values[k] +"</a></td>"; 	      		
+															} 							
+													
+													else if(row_keys[k]=="Hubs"  || row_keys[k]=="Hub" )		
+															{									
+																									//Handling Hubs separately
+																	count=0;
+																	var mm=jsonObj.Mainline.Table.Row[i].Hubs;	
+																		for (var name in mm)	
+																		{	
+																			html_text+="<td><ul>";
+																			
+																			for (var name2 in mm[name])	
+																			{																		
+																				if((mm[name][name2])=="NULL" || (mm[name][name2])==null || (mm[name][name2])=="" || (mm[name][name2])=="Null" || (mm[name][name2])=="null")
+																								html_text+="<li>"+""+"</li>"; 
+																				
+																				else
+																					{
+																						if(count ==0)							// Bold face the first statement of Hub
+																						{
+																								html_text+="<b><li>"+(mm[name][name2])+"</b></li>"; 
+																						}
+																						else
+																						{	
+																								html_text+="<li>"+(mm[name][name2])+"</li>"; 
+																						}
+																					}
+																				count=1;
+																			}	html_text+="</ul></td>";												
+																		}
+															}
+													else																		// Print everything as it is
+															html_text+="<td>"+row_values[k]+"</td>"; 
+																
+											}
+											
+										html_text+="</tr>";            
+									}   
+
+							html_text+="</tbody>"; 
+					}
+							html_text+="</table>";           
+							html_text+="</div></body></html>"; 
+					
+		}
+			
+
+	}
+	
+	catch(e)
+	{
+		alert(e);
+	}
+	
+</script>
+
+</head>
+ 
+	<body>
+		<br /><br /><br /><br /><br /><br />
+			<h2><center>Enter URL for Trucking List JSON File</center></h2>
+
+			<form name="form1" method="POST" id="location" onsubmit="chkform()">										<!-- Form awaiting for JSON file/URL input on the first page -->
+					
+					<center><input type="text" name="text1" id="URL" value="truckinglist.json" maxlength="255" size="50" /></center>
+					<br/>
+					<center><input type="submit" name="submit" value="Submit Query" onClick="viewJSON(this.form)" /></center>					<!-- Submit the JSON file form -->
+					
+			</form>
+
+	</body>
+
+</html>
+
