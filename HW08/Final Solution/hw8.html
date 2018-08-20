@@ -316,9 +316,9 @@
 												Isstar=(localStorage.getItem(oreo));
 										//		console.log(Isstar);
 												if ( Isstar===null ) 
-													myTable2+="<td><center><button type=\"button\" class=\"btn btn-light btn-sm\" onclick='return fav(\""+pl_id+"\","+Favjson+")'><img id=\""+oreo+"\" src=http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/star.JPG style=\"height:25px;width:35px\"></button></center></td>";
+													myTable2+="<td><center><button type=\"button\" class=\"btn btn-light btn-sm\" onclick='return fav(\""+pl_id+"\","+Favjson+")'><img id=\""+oreo+"\" src=https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/star.JPG style=\"height:25px;width:35px\"></button></center></td>";
 												else
-													myTable2+="<td><center><button type=\"button\" class=\"btn btn-light btn-sm\" onclick='return fav(\""+pl_id+"\","+Favjson+")'><img id=\""+oreo+"\" src=http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/filled_star.JPG style=\"height:25px;width:35px\"></button></center></td>";
+													myTable2+="<td><center><button type=\"button\" class=\"btn btn-light btn-sm\" onclick='return fav(\""+pl_id+"\","+Favjson+")'><img id=\""+oreo+"\" src=https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/filled_star.JPG style=\"height:25px;width:35px\"></button></center></td>";
 												
 												
 												//myTable2+="<td><center><button type=\"button\" class=\"btn btn-light btn-sm\" onclick='return fav(\""+pl_id+"\","+Favjson+")'><img id=\""+oreo+"\" src=http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/star.JPG style=\"height:25px;width:35px\"></button></center></td>";
@@ -342,8 +342,8 @@
 				function fav(placeid,Favjson)
 				{			//console.log(Favjson);
 												
-											var star = "http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/star.JPG";
-											var filled = "http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/filled_star.JPG";
+											var star = "https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/star.JPG";
+											var filled = "https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/filled_star.JPG";
 
 										
 														if ( $('#'+placeid).attr('src') == star ) 
@@ -688,13 +688,13 @@
 													};
 												//Favjson=JSON.stringify(Favjson);
 												oreo=placeid;
-					var star = "http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/star.JPG";
-					var filled = "http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/filled_star.JPG";
+					var star = "https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/star.JPG";
+					var filled = "https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/filled_star.JPG";
 							
 					if ( $('#'+placeid).attr('src') == star ) 
-						document.getElementById("star_btn").innerHTML="<img id='"+oreo+"fav1' src=http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/star.JPG style=\"height:25px;width:30px;\">";
+						document.getElementById("star_btn").innerHTML="<img id='"+oreo+"fav1' src=https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/star.JPG style=\"height:25px;width:30px;\">";
 					else
-						document.getElementById("star_btn").innerHTML="<img id='"+oreo+"fav1' src=http://www-scf.usc.edu/~ethiraj/aie13rnfe9AdgDSW3ct/hw8/Images/filled_star.JPG style=\"height:25px;width:30px;\">";
+						document.getElementById("star_btn").innerHTML="<img id='"+oreo+"fav1' src=https://github.com/raethira/Web-Technologies/blob/master/HW08/Final%20Solution/Images/filled_star.JPG style=\"height:25px;width:30px;\">";
 					
 					//document.getElementById("star_btn").setAttribute=('onclick',"return fav(\""+placeid+"\","+Obj+");");
 					
@@ -985,7 +985,7 @@
 					
 								$.ajax({
 					
-												url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/getDetails?url="+placeid,
+												url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/getDetails?url="+placeid,
 											//	url: "http://127.0.0.1:8081/api/getDetails?url="+placeid,
 
 												contentType: 'application/json', 
@@ -1353,7 +1353,7 @@
 													
 													$.ajax({
 					
-																url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/Yelpmatch?"+match,
+																url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/Yelpmatch?"+match,
 															//	url: "http://127.0.0.1:8081/api/Yelpmatch?"+match,
 
 																contentType: 'application/json', 
@@ -1393,7 +1393,7 @@
 																{
 																$.ajax({
 					
-																			url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/Yelprev?id="+jsonObj['businesses'][0]['id'],
+																			url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/Yelprev?id="+jsonObj['businesses'][0]['id'],
 																	//		url: "http://127.0.0.1:8081/api/Yelprev?id="+jsonObj['businesses'][0]['id'],
 
 																			contentType: 'application/json', 
@@ -1529,7 +1529,7 @@
 											
 											$.ajax({
 					
-												url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/getDetails?url="+placeid,
+												url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/getDetails?url="+placeid,
 											//	url: "http://127.0.0.1:8081/api/getDetails?url="+placeid,
 
 												contentType: 'application/json', 
@@ -1856,7 +1856,7 @@
 										//console.log(location);
 										$.ajax({
 					
-												url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/getGeocode?url="+location,
+												url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/getGeocode?url="+location,
 										//		url: "http://127.0.0.1:8081/api/getGeocode?url="+location,
 
 												contentType: 'application/json', 
@@ -1919,7 +1919,7 @@
 							
 							$.ajax({
 			
-										url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/getResults?"+url,
+										url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/getResults?"+url,
 									//	url: "http://127.0.0.1:8081/api/getResults?"+url,
 										contentType: 'application/json', 
 										async:true,
@@ -1996,7 +1996,7 @@
 											$.ajax(
 											{
 					
-														url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/getTable?next="+next,
+														url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/getTable?next="+next,
 													//	url: "http://127.0.0.1:8081/api/getTable?next="+next,
 
 														contentType: 'application/json', 
@@ -2068,7 +2068,7 @@
 																$.ajax(
 																{
 										
-																			url: "http://csci571-hw8-env.us-east-2.elasticbeanstalk.com/api/getTable?next="+next,
+																			url: "http://csci571-hw09-env.us-east-2.elasticbeanstalk.com/api/getTable?next="+next,
 																		//	url: "http://127.0.0.1:8081/api/getTable?next="+next,
 
 																			contentType: 'application/json', 
