@@ -24,7 +24,7 @@
           },
           "Revenue": "$24,752",
           "HomePage": "https://www.ups.com/",
-          "Logo": "http://cs-server.usc.edu:45678/hw/hw4/ups.jpg"
+          "Logo": "https://github.com/raethira/Web-Technologies/blob/master/HW04/Solution/Images/ups.jpg?raw=true"
         },
           
         {
@@ -38,7 +38,7 @@
           },
           "Revenue": "$14,149",
           "HomePage": "https://www.fedex.com",
-          "Logo": "http://cs-server.usc.edu:45678/hw/hw4/fedex.png"
+          "Logo": "https://github.com/raethira/Web-Technologies/blob/master/HW04/Solution/Images/fedex.png?raw=true"
         },  
           
           
@@ -53,7 +53,7 @@
           },
           "Revenue": "$4,527",
           "HomePage": "https://www.jbhunt.com/",
-          "Logo": "http://cs-server.usc.edu:45678/hw/hw4/jbhunt.jpg"
+          "Logo": "https://github.com/raethira/Web-Technologies/blob/master/HW04/Solution/Images/jbhunt.jpg?raw=true"
         },  
           
           
@@ -68,7 +68,7 @@
           },
           "Revenue": "$4,869",
           "HomePage": "https://www.yrcw.com/",
-          "Logo": "http://cs-server.usc.edu:45678/hw/hw4/yrcw.png"
+          "Logo": "https://github.com/raethira/Web-Technologies/blob/master/HW04/Solution/Images/jbhunt.jpg?raw=true"
         }, 
           
         {
@@ -82,7 +82,7 @@
           },
           "Revenue": "$3,729",
           "HomePage": "http://www.con-way.com",
-          "Logo": "http://cs-server.usc.edu:45678/hw/hw4/con-way.png"
+          "Logo": "https://github.com/raethira/Web-Technologies/blob/master/HW04/Solution/Images/con-way.png?raw=true"
         },  
           
         {
@@ -96,7 +96,7 @@
           },
           "Revenue": "$3,334",
           "HomePage": "http://www.swifttrans.com/",
-          "Logo": "http://cs-server.usc.edu:45678/hw/hw4/swift.png"
+          "Logo": "https://github.com/raethira/Web-Technologies/blob/master/HW04/Solution/Images/swift.png?raw=true"
         }        
         
       ]
